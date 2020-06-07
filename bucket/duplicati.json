@@ -26,10 +26,10 @@
     "checkver": {
         "url": "https://updates.duplicati.com/beta/latest.json",
         "jsonpath": "$.zip",
-        "regex": "duplicati-(?<version>[\\d.]+)(?<suffix>.+)\\.zip"
+        "regex": "(?<filename>.+?(?<version>[\\d.]+).+)"
     },
     "autoupdate": {
-        "url": "https://updates.duplicati.com/beta/duplicati-$version$matchSuffix.zip",
+        "url": "https://updates.duplicati.com/beta/$matchFilename",
         "hash": {
             "mode": "json",
             "url": "https://updates.duplicati.com/beta/latest.json",
