@@ -1,6 +1,6 @@
 {
     "version": "2.0.5.1",
-    "description": "Duplicati. A backup client that securely stores encrypted, incremental, compressed backups on cloud storage services and remote file servers.",
+    "description": "Duplicati. A backup software to store encrypted backups online.",
     "homepage": "https://www.duplicati.com",
     "license": "LGPL-2.1-only",
     "suggest": {
@@ -25,13 +25,13 @@
     "checkver": {
         "url": "https://updates.duplicati.com/beta/latest.json",
         "jsonpath": "$.zip",
-        "regex": "(?<filename>.+?(?<version>[\\d.]+).+)"
+        "regex": "(?<filename>.+?(?<version>[\\d.]{5,}).+)"
     },
     "autoupdate": {
         "url": "https://updates.duplicati.com/beta/$matchFilename",
         "hash": {
-            "mode": "json",
             "url": "https://updates.duplicati.com/beta/latest.json",
+            "mode": "json",
             "jsonpath": "$.zipsha256"
         }
     }
