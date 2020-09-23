@@ -1,0 +1,121 @@
+{
+	// Place your my-scoop-bucket workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+    // }
+
+    "New app String": {
+        "prefix": "app",
+        "scope": "json,jsonc",
+        "body": [
+            "{",
+            "\t\"version\": \"$1\",",
+            "\t\"description\": \"$2\",",
+            "\t\"homepage\": \"$3\",",
+            "\t\"license\": {\"identifier\": \"$4\"},",
+            "\t\"notes\": \"$5\",",
+            "\t\"depends\": \"$6\",",
+            "\t\"url\": \"$7\",",
+            "\t\"hash\": \"$8\",",
+            "\t\"bin\": \"$9\",",
+            "\t\"shortcuts\": [",
+            "\t\t[",
+            "\t\t\t\"$10.exe\",",
+            "\t\t\t\"$11\"",
+            "\t\t]",
+            "\t],",
+            "\t\"checkver\":\"$12\",",
+            "\t\"autoupdate\": {",
+            "\t\t\"url\": \"$13\"",
+            "\t}",
+            "}\n",
+        ],
+    },
+    "New app Arch": {
+        "prefix": "appArch",
+        "scope": "json,jsonc",
+        "body": [
+            "{",
+            "\t\"version\": \"$1\",",
+            "\t\"description\": \"$2\",",
+            "\t\"homepage\": \"$3\",",
+            "\t\"license\": {\"identifier\": \"$4\"},",
+            "\t\"notes\": \"$5\",",
+            "\t\"depends\": \"$6\",",
+            "\t\"architecture\": {",
+            "\t\t\"64bit\": {",
+            "\t\t\t\"url\": \"$7\",",
+            "\t\t\t\"hash\": \"$8\"",
+            "\t\t},",
+            "\t\t\"32bit\": {",
+            "\t\t\t\"url\": \"$9\",",
+            "\t\t\t\"hash\": \"$10\"",
+            "\t\t}",
+            "\t},",
+            "\t\"bin\": \"$11\",",
+            "\t\"shortcuts\": [",
+            "\t\t[",
+            "\t\t\t\"$12.exe\",",
+            "\t\t\t\"$13\"",
+            "\t\t]",
+            "\t]",
+            "}\n",
+        ],
+    },
+    "New Architecture": {
+        "prefix": "arch",
+        "scope": "json,jsonc",
+        "body": [
+            "\"architecture\": {",
+            "\t\"64bit\": {",
+            "\t\t\"url\": \"$1\",",
+            "\t\t\"hash\": \"$2\"",
+            "\t},",
+            "\t\"32bit\": {",
+            "\t\t\"url\": \"$3\",",
+            "\t\t\"hash\": \"$4\"",
+            "\t}",
+            "},",
+        ],
+    },
+    "New Autoupdate with Arch": {
+        "prefix": "upAr",
+        "scope": "json,jsonc",
+        "body": [
+            "\"autoupdate\": {",
+            "\t\"architecture\": {",
+            "\t\t\"64bit\": {",
+            "\t\t\t\"url\": \"$1\"",
+            "\t\t},",
+            "\t\t\"32bit\": {",
+            "\t\t\t\"url\": \"$2\"",
+            "\t\t}",
+            "\t}",
+            "}",
+        ],
+    },
+    "Check for existing persist file": {
+        "prefix": "persistCheck",
+        "scope": "json,jsonc",
+        "body": [
+            "\"\\$file = '$1'\",",
+            "\"if (!(Test-Path \\\"\\$persist_dir\\\\\\\\\\$file\\\")) {\",",
+            "\"\tWrite-Host 'File' \\$file 'does not exists. Creating.' -f Yellow\",",
+            "\"\t\\$CONT = @('$2')\",",
+            "\"\tSet-Content \\\"\\$dir\\\\\\\\\\$file\\\" (\\$CONT -join \\\"`r`n\\\") -Encoding Ascii\",",
+            "\"}\"",
+        ],
+    }
+}
