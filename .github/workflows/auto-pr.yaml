@@ -1,30 +1,46 @@
 name: Update manifests
 
-on:
-  schedule:
-    - cron: 0 7 * * *
+on: workflow_dispatch
+  # schedule:
+  #   - cron: 0 7 * * *
 
 jobs:
   autopr:
-    name: Update manifest
+    name: Update manifests
     runs-on: windows-latest
     steps:
-      - name: Checkout
+      - name: Checkout bucket
         uses: actions/checkout@v2
         with:
           path: bucket
 
+      - name: Checkout scoop
+        uses: actions/checkout@v2
+        with:
+          repository: lukesampson/scoop
+          path: scoop\apps\scoop\current
+
       - name: Setup scoop
-        run: Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/lukesampson/scoop/master/bin/install.ps1')
+        run: |
+          . $env:SCOOP\apps\scoop\current\lib\core.ps1
+          shim "$env:SCOOP\apps\scoop\current\bin\scoop.ps1" $false
+          ensure "$env:SCOOP\buckets\main"
+        env:
+          SCOOP: ${{ github.workspace }}\scoop
+
+      - name: Setup Hub
+        uses: Geertvdc/setup-hub@v1.0.0
 
       - name: Setup Hub
         uses: Geertvdc/setup-hub@v1.0.0
 
       - name: Run auto-pr.ps1
         run: |
-          $env:path += ";$env:userprofile\scoop\shims"
+          $env:path += ";$env:SCOOP\shims"
           $env:GIT_REDIRECT_STDERR = '2>&1' # https://github.com/dahlbyk/posh-git/issues/109
           $env:GIT_AUTHOR_NAME = 'GitHub Action'
           $env:EMAIL = 'noreply@github.com'
           .\bin\auto-pr.ps1 -Push
         working-directory: ${{ github.workspace }}\bucket
+        env:
+          SCOOP: ${{ github.workspace }}\scoop
