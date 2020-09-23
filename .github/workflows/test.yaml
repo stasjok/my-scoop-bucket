@@ -1,0 +1,47 @@
+name: Run tests
+
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - '**.md'
+      - '.vscode/**'
+  pull_request:
+    branches: [ master ]
+    paths-ignore:
+      - '**.md'
+      - '.vscode/**'
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: windows-latest
+
+    env:
+      SCOOP: ${{ github.workspace }}\scoop
+      SCOOP_HOME: ${{ github.workspace }}\scoop\apps\scoop\current
+      SCOOP_HELPERS: ${{ github.workspace }}\scoop_helpers
+
+    steps:
+      - name: Checkout bucket
+        uses: actions/checkout@v2
+        with:
+          path: bucket
+          fetch-depth: 2
+
+      - name: Checkout scoop
+        uses: actions/checkout@v2
+        with:
+          repository: lukesampson/scoop
+          path: scoop\apps\scoop\current
+
+      - name: Init scoop
+        run: . "$env:SCOOP_HOME\test\bin\init.ps1"
+        working-directory: ${{ github.workspace }}\bucket
+
+      - name: Run tests
+        run: .\Bucket.Tests.ps1
+        working-directory: ${{ github.workspace }}\bucket
+        env:
+          APPVEYOR_REPO_COMMIT: ${{ github.sha }}
