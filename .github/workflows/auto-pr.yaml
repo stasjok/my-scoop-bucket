@@ -29,12 +29,6 @@ jobs:
         env:
           SCOOP: ${{ github.workspace }}\scoop
 
-      - name: Setup Hub
-        uses: Geertvdc/setup-hub@v1.0.0
-
-      - name: Setup Hub
-        uses: Geertvdc/setup-hub@v1.0.0
-
       - name: Run auto-pr.ps1
         run: |
           $env:path += ";$env:SCOOP\shims"
