@@ -36,12 +36,13 @@ jobs:
           repository: lukesampson/scoop
           path: scoop\apps\scoop\current
 
-      - name: Init scoop
-        run: . "$env:SCOOP_HOME\test\bin\init.ps1"
-        working-directory: ${{ github.workspace }}\bucket
-
       - name: Run tests
         run: |
+          # from test/bin/init.ps1
+          Install-Module -Repository PSGallery -Scope CurrentUser -Force -Name Pester -RequiredVersion 4.10.1 -SkipPublisherCheck
+          Install-Module -Repository PSGallery -Scope CurrentUser -Force -Name BuildHelpers
+          Set-BuildEnvironment -Force
+          # from test/bin/test.ps1
           Write-Host 'Invoke-Pester' -PassThru
           $result = Invoke-Pester -PassThru
           if ($result.FailedCount -gt 0) {
