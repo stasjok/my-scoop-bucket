@@ -41,7 +41,12 @@ jobs:
         working-directory: ${{ github.workspace }}\bucket
 
       - name: Run tests
-        run: .\Bucket.Tests.ps1
+        run: |
+          Write-Host 'Invoke-Pester' -PassThru
+          $result = Invoke-Pester -PassThru
+          if ($result.FailedCount -gt 0) {
+              exit $result.FailedCount
+          }
         working-directory: ${{ github.workspace }}\bucket
         env:
           APPVEYOR_REPO_COMMIT: ${{ github.sha }}
