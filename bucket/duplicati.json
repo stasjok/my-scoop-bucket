@@ -24,9 +24,9 @@
     "persist": "data",
     "checkver": {
         "url": "https://updates.duplicati.com/beta/latest.manifest",
-        "regex": "Version[\":\\s]+?(?<version>[\\d.]+).+RemoteURLS[\":\\s[]+?https?://(?<url>[^\"]+?)\""
+        "regex": "https://updates\\.duplicati\\.com/(?<type>\\w+)/(?<filename>duplicati-(?<version>[\\d.]+)_\\w+_(?<timestamp>[\\d-]+)\\.zip)"
     },
     "autoupdate": {
-        "url": "https://$matchUrl"
+        "url": "https://updates.duplicati.com/beta/$matchFilename"
     }
 }
