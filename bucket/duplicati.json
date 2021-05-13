@@ -23,16 +23,10 @@
     ],
     "persist": "data",
     "checkver": {
-        "url": "https://updates.duplicati.com/beta/latest.json",
-        "jsonpath": "$.zip",
-        "regex": "(?<filename>.+?(?<version>[\\d.]{5,}).+)"
+        "url": "https://updates.duplicati.com/beta/latest.manifest",
+        "regex": "Version[\":\\s]+?(?<version>[\\d.]+).+RemoteURLS[\":\\s[]+?https?://(?<url>[^\"]+?)\""
     },
     "autoupdate": {
-        "url": "https://updates.duplicati.com/beta/$matchFilename",
-        "hash": {
-            "url": "https://updates.duplicati.com/beta/latest.json",
-            "mode": "json",
-            "jsonpath": "$.zipsha256"
-        }
+        "url": "https://$matchUrl"
     }
 }
