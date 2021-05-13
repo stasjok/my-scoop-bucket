@@ -1,13 +1,13 @@
 {
-    "version": "2.0.5.1",
+    "version": "2.0.6.1",
     "description": "Duplicati. A backup software to store encrypted backups online.",
     "homepage": "https://www.duplicati.com",
     "license": "LGPL-2.1-only",
     "suggest": {
         "Visual C++ Redistributable for Visual Studio 2015": "vcredist2015"
     },
-    "url": "https://updates.duplicati.com/beta/duplicati-2.0.5.1_beta_2020-01-18.zip",
-    "hash": "168aa8b6162586a8a16489e4ac2beece5e14e678bb01c4afcf37fbfb708482f6",
+    "url": "https://updates.duplicati.com/beta/duplicati-2.0.6.1_beta_2021-05-03.zip",
+    "hash": "15ca4f0257beeb50fb9a4a5461bcc8205c5fb6949835a1eceb9b59112505267f",
     "bin": [
         [
             "Duplicati.CommandLine.exe",
