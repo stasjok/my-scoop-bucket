@@ -21,9 +21,6 @@ jobs:
           repository: lukesampson/scoop
           path: scoop\apps\scoop\current
 
-      - name: Setup Hub
-        uses: geertvdc/setup-hub@master
-
       - name: Setup scoop
         run: |
           . $env:SCOOP\apps\scoop\current\lib\core.ps1
@@ -31,6 +28,9 @@ jobs:
           ensure "$env:SCOOP\buckets\main"
         env:
           SCOOP: ${{ github.workspace }}\scoop
+
+      - name: Install Hub
+        run: choco install hub -y --ignore-dependencies --no-progress
 
       - name: Run auto-pr.ps1
         run: |
