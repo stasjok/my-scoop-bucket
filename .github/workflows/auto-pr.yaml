@@ -21,6 +21,9 @@ jobs:
           repository: lukesampson/scoop
           path: scoop\apps\scoop\current
 
+      - name: Setup Hub
+        uses: geertvdc/setup-hub@master
+
       - name: Setup scoop
         run: |
           . $env:SCOOP\apps\scoop\current\lib\core.ps1
