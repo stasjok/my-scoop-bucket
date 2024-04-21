@@ -11,12 +11,12 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout bucket
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: bucket
 
       - name: Checkout scoop
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: lukesampson/scoop
           ref: v0.3.1
