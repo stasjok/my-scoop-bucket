@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: lukesampson/scoop
+          ref: v0.3.1
           path: scoop\apps\scoop\current
 
       - name: Setup scoop
